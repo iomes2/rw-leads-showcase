@@ -150,7 +150,7 @@ function Services() {
     <section id="services" className="bg-surface py-16 md:py-24">
       <div className="max-w-[1200px] mx-auto px-4 md:px-6">
         <h2 className="text-center font-extrabold text-2xl md:text-3xl text-charcoal mb-12">
-          We handle the marketing.
+          I handle the marketing.
           <br />
           You handle the work.
         </h2>
