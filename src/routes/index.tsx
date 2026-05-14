@@ -15,6 +15,7 @@ import {
   PhoneCall,
   Rocket,
   PhoneIncoming,
+  Check,
 } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 
@@ -61,7 +62,7 @@ function Hero({ onPlay }: { onPlay: () => void }) {
             The marketing machine for your trades business.
           </h1>
           <p className="mt-5 text-base md:text-lg text-charcoal-foreground/80 max-w-md leading-relaxed">
-            Stop relying on referrals. We build high-converting ads and landing pages that get your phone ringing with exclusive local leads.
+            Stop relying on referrals. I build high-converting ads and landing pages that get your phone ringing with exclusive local leads.
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
             <button
@@ -74,7 +75,7 @@ function Hero({ onPlay }: { onPlay: () => void }) {
               onClick={() => scrollToId("work")}
               className="bg-transparent text-charcoal-foreground font-semibold px-5 py-3 rounded-sm border-2 border-charcoal-foreground hover:bg-charcoal-foreground hover:text-charcoal transition"
             >
-              See Our Results
+              See My Results
             </button>
           </div>
         </div>
@@ -133,12 +134,12 @@ function Services() {
     {
       Icon: Search,
       title: "Show Up on Google & Facebook",
-      body: "We put your business exactly where local homeowners are looking for your services.",
+      body: "I put your business exactly where local homeowners are looking for your services.",
     },
     {
       Icon: LayoutTemplate,
       title: "A Page That Actually Gets You Calls",
-      body: "No more confusing websites. We build simple, high-converting landing pages focused on one thing: getting the phone to ring.",
+      body: "No more confusing websites. I build simple, high-converting landing pages focused on one thing: getting the phone to ring.",
     },
     {
       Icon: Smartphone,
@@ -150,7 +151,7 @@ function Services() {
     <section id="services" className="bg-surface py-16 md:py-24">
       <div className="max-w-[1200px] mx-auto px-4 md:px-6">
         <h2 className="text-center font-extrabold text-2xl md:text-3xl text-charcoal mb-12">
-          We handle the marketing.
+          I handle the marketing.
           <br />
           You handle the work.
         </h2>
@@ -171,10 +172,58 @@ function Services() {
   );
 }
 
+function About() {
+  const bullets = [
+    "Based in Framingham, MA",
+    "You'll have my direct contact",
+    "I only take a few clients per area",
+  ];
+  return (
+    <section id="about" className="bg-surface py-16 md:py-24 border-t-2 border-charcoal/10">
+      <div className="max-w-[1200px] mx-auto px-4 md:px-6">
+        <h2 className="text-center font-extrabold text-2xl md:text-3xl text-charcoal mb-12">
+          Who's Behind This
+        </h2>
+        <div className="grid md:grid-cols-2 gap-10 md:gap-14 items-center max-w-5xl mx-auto">
+          <div className="flex justify-center md:justify-start">
+            <div className="relative w-full max-w-[320px] aspect-[3/4] bg-surface-container border-2 border-charcoal rounded-sm shadow-[6px_6px_0_0_var(--charcoal)] flex items-center justify-center">
+              <span className="text-charcoal/60 font-semibold text-sm tracking-wide text-center px-4">
+                Renan's photo here
+              </span>
+            </div>
+          </div>
+          <div>
+            <h3 className="font-extrabold text-3xl md:text-4xl text-charcoal mb-4">
+              Hi, I'm Renan.
+            </h3>
+            <p className="text-charcoal/80 leading-relaxed mb-6">
+              I'm a marketing specialist based in Framingham, MA. I work directly with local service businesses — no big agency, no account managers, no outsourcing. When you work with me, you work with me.
+            </p>
+            <ul className="space-y-3 mb-7">
+              {bullets.map((b) => (
+                <li key={b} className="flex items-start gap-3">
+                  <Check className="text-primary mt-0.5 shrink-0" size={20} strokeWidth={3} />
+                  <span className="font-semibold text-charcoal">{b}</span>
+                </li>
+              ))}
+            </ul>
+            <button
+              onClick={() => scrollToId("cta")}
+              className="bg-primary text-primary-foreground font-semibold px-6 py-3 rounded-sm border-2 border-charcoal shadow-[4px_4px_0_0_var(--charcoal)] hover:translate-y-[-1px] transition-transform"
+            >
+              Let's Talk
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Steps() {
   const steps = [
-    { Icon: PhoneCall, n: 1, title: "Quick Call", body: "We learn about your business and area." },
-    { Icon: Rocket, n: 2, title: "We Build & Launch", body: "Ads + page live in 7 days." },
+    { Icon: PhoneCall, n: 1, title: "Quick Call", body: "I learn about your business and area." },
+    { Icon: Rocket, n: 2, title: "I Build & Launch", body: "Ads + page live in 7 days." },
     { Icon: PhoneIncoming, n: 3, title: "Your Phone Rings", body: "Real leads, real jobs, real money." },
   ];
   return (
@@ -337,6 +386,7 @@ function Landing() {
         <Hero onPlay={() => setVideoOpen(true)} />
         <SoundFamiliar />
         <Services />
+        <About />
         <Steps />
         <Reviews />
         <FinalCTA />
