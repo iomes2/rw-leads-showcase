@@ -386,6 +386,7 @@ function Landing() {
         <Hero onPlay={() => setVideoOpen(true)} />
         <SoundFamiliar />
         <Services />
+        <About />
         <Steps />
         <Reviews />
         <FinalCTA />
