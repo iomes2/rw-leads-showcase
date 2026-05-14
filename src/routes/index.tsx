@@ -133,12 +133,12 @@ function Services() {
     {
       Icon: Search,
       title: "Show Up on Google & Facebook",
-      body: "We put your business exactly where local homeowners are looking for your services.",
+      body: "I put your business exactly where local homeowners are looking for your services.",
     },
     {
       Icon: LayoutTemplate,
       title: "A Page That Actually Gets You Calls",
-      body: "No more confusing websites. We build simple, high-converting landing pages focused on one thing: getting the phone to ring.",
+      body: "No more confusing websites. I build simple, high-converting landing pages focused on one thing: getting the phone to ring.",
     },
     {
       Icon: Smartphone,
