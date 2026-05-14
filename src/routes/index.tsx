@@ -61,7 +61,7 @@ function Hero({ onPlay }: { onPlay: () => void }) {
             The marketing machine for your trades business.
           </h1>
           <p className="mt-5 text-base md:text-lg text-charcoal-foreground/80 max-w-md leading-relaxed">
-            Stop relying on referrals. We build high-converting ads and landing pages that get your phone ringing with exclusive local leads.
+            Stop relying on referrals. I build high-converting ads and landing pages that get your phone ringing with exclusive local leads.
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
             <button
