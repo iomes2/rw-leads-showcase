@@ -74,7 +74,7 @@ function Hero({ onPlay }: { onPlay: () => void }) {
               onClick={() => scrollToId("work")}
               className="bg-transparent text-charcoal-foreground font-semibold px-5 py-3 rounded-sm border-2 border-charcoal-foreground hover:bg-charcoal-foreground hover:text-charcoal transition"
             >
-              See Our Results
+              See My Results
             </button>
           </div>
         </div>
