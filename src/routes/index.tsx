@@ -27,71 +27,19 @@ const scrollToId = (id: string) => {
 };
 
 function Nav() {
-  const [open, setOpen] = useState(false);
-  const links = [
-    { label: "Our Work", id: "work" },
-    { label: "Services", id: "services" },
-    { label: "Reviews", id: "reviews" },
-    { label: "Pricing", id: "pricing" },
-  ];
   return (
     <header className="sticky top-0 z-40 bg-surface border-b-2 border-charcoal">
       <div className="max-w-[1200px] mx-auto px-4 md:px-6 h-16 flex items-center justify-between">
         <a href="#top" className="font-extrabold tracking-tight text-charcoal text-lg">
           RW Leads Generator
         </a>
-        <nav className="hidden md:flex items-center gap-8">
-          {links.map((l) => (
-            <button
-              key={l.id}
-              onClick={() => scrollToId(l.id)}
-              className="text-sm font-semibold text-charcoal hover:text-primary transition-colors"
-            >
-              {l.label}
-            </button>
-          ))}
-        </nav>
         <button
           onClick={() => scrollToId("cta")}
-          className="hidden md:inline-flex items-center justify-center bg-primary text-primary-foreground font-semibold px-5 py-2.5 rounded-sm border-2 border-charcoal hover:translate-y-[-1px] transition-transform"
+          className="inline-flex items-center justify-center bg-primary text-primary-foreground font-semibold px-5 py-2.5 rounded-sm border-2 border-charcoal hover:translate-y-[-1px] transition-transform"
         >
           Book Call
         </button>
-        <button
-          className="md:hidden text-charcoal"
-          aria-label="Menu"
-          onClick={() => setOpen((v) => !v)}
-        >
-          {open ? <X size={24} /> : <Menu size={24} />}
-        </button>
       </div>
-      {open && (
-        <div className="md:hidden border-t-2 border-charcoal bg-surface">
-          <div className="px-4 py-4 flex flex-col gap-3">
-            {links.map((l) => (
-              <button
-                key={l.id}
-                onClick={() => {
-                  setOpen(false);
-                  scrollToId(l.id);
-                }}
-                className="text-left font-semibold text-charcoal py-2"
-              >
-                {l.label}
-              </button>
-            ))}
-            <button
-              onClick={() => {
-                setOpen(false);
-                scrollToId("cta");
-              }}
-              className="bg-primary text-primary-foreground font-semibold px-5 py-3 rounded-sm border-2 border-charcoal"
-            >
-              Book Call
-            </button>
-          </div>
-        </div>
-      )}
     </header>
   );
 }
@@ -343,29 +291,12 @@ function FinalCTA() {
 
 function Footer() {
   return (
-    <footer className="bg-charcoal text-charcoal-foreground py-12">
-      <div className="max-w-[1200px] mx-auto px-4 md:px-6 grid md:grid-cols-4 gap-8">
-        <div className="md:col-span-1">
-          <p className="font-extrabold text-lg mb-2">RW Leads Generator</p>
-          <p className="text-xs text-charcoal-foreground/60 leading-relaxed">
-            © 2024 RW Leads Generator. Built for the Trades.
-          </p>
-        </div>
-        <div>
-          <ul className="space-y-2 text-sm">
-            <li><a href="#services" className="hover:text-primary">SEO for Contractors</a></li>
-            <li><a href="#services" className="hover:text-primary">Lead Generation</a></li>
-            <li><a href="#services" className="hover:text-primary">Local Search</a></li>
-          </ul>
-        </div>
-        <div>
-          <ul className="space-y-2 text-sm">
-            <li><a href="#" className="hover:text-primary">Privacy Policy</a></li>
-            <li><a href="#" className="hover:text-primary">Terms of Service</a></li>
-            <li><a href="#" className="hover:text-primary">Contact Support</a></li>
-          </ul>
-        </div>
-        <div />
+    <footer className="bg-charcoal text-charcoal-foreground py-6">
+      <div className="max-w-[1200px] mx-auto px-4 md:px-6 flex items-center justify-between gap-4">
+        <p className="text-xs text-charcoal-foreground/70">
+          © 2024 RW Leads Generator. All rights reserved.
+        </p>
+        <a href="#" className="text-xs hover:text-primary">Privacy Policy</a>
       </div>
     </footer>
   );
