@@ -173,8 +173,8 @@ function Services() {
 
 function Steps() {
   const steps = [
-    { Icon: PhoneCall, n: 1, title: "Quick Call", body: "We learn about your business and area." },
-    { Icon: Rocket, n: 2, title: "We Build & Launch", body: "Ads + page live in 7 days." },
+    { Icon: PhoneCall, n: 1, title: "Quick Call", body: "I learn about your business and area." },
+    { Icon: Rocket, n: 2, title: "I Build & Launch", body: "Ads + page live in 7 days." },
     { Icon: PhoneIncoming, n: 3, title: "Your Phone Rings", body: "Real leads, real jobs, real money." },
   ];
   return (
