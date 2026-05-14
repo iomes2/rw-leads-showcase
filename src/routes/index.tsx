@@ -15,6 +15,7 @@ import {
   PhoneCall,
   Rocket,
   PhoneIncoming,
+  Check,
 } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 
