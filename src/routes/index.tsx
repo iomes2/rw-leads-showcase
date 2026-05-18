@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import {
-  
   X,
   Play,
   MessageSquareWarning,
@@ -16,8 +15,15 @@ import {
   Rocket,
   PhoneIncoming,
   Check,
+  Globe,
+  MapPin,
+  Camera,
+  Link2,
+  Phone,
+  BellRing,
 } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
+import { useTranslation, type Locale } from "@/i18n/context";
 
 export const Route = createFileRoute("/")({
   component: Landing,
@@ -27,30 +33,54 @@ const scrollToId = (id: string) => {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
 };
 
+function LanguageSwitcher() {
+  const { locale, setLocale } = useTranslation();
+  return (
+    <div className="relative inline-flex items-center gap-1.5 bg-surface-container border-2 border-charcoal rounded-sm px-2 py-1">
+      <Globe size={14} className="text-charcoal" />
+      <select
+        aria-label="Language"
+        value={locale}
+        onChange={(e) => setLocale(e.target.value as Locale)}
+        className="bg-transparent text-xs font-bold text-charcoal focus:outline-none cursor-pointer pr-1"
+      >
+        <option value="en">EN</option>
+        <option value="pt">PT</option>
+        <option value="es">ES</option>
+      </select>
+    </div>
+  );
+}
+
 function Nav() {
+  const { t } = useTranslation();
   return (
     <header className="sticky top-0 z-40 bg-surface border-b-2 border-charcoal">
       <div className="max-w-[1200px] mx-auto px-4 md:px-6 h-16 flex items-center justify-between">
         <a href="#top" className="font-extrabold tracking-tight text-charcoal text-lg">
           RW Leads Generator
         </a>
-        <button
-          onClick={() => scrollToId("cta")}
-          className="inline-flex items-center justify-center bg-primary text-primary-foreground font-semibold px-5 py-2.5 rounded-sm border-2 border-charcoal hover:translate-y-[-1px] transition-transform"
-        >
-          Book Call
-        </button>
+        <div className="flex items-center gap-3">
+          <LanguageSwitcher />
+          <button
+            onClick={() => scrollToId("cta")}
+            className="inline-flex items-center justify-center bg-primary text-primary-foreground font-semibold px-5 py-2.5 rounded-sm border-2 border-charcoal hover:translate-y-[-1px] transition-transform"
+          >
+            {t("nav.bookCall")}
+          </button>
+        </div>
       </div>
     </header>
   );
 }
 
 function Hero({ onPlay }: { onPlay: () => void }) {
+  const { t } = useTranslation();
   return (
     <section id="top" className="relative overflow-hidden border-b-2 border-charcoal">
       <img
         src={heroBg}
-        alt="Residential outdoor garden patio at sunset"
+        alt={t("hero.imgAlt")}
         width={1920}
         height={1080}
         className="absolute inset-0 w-full h-full object-cover"
@@ -59,23 +89,23 @@ function Hero({ onPlay }: { onPlay: () => void }) {
       <div className="relative max-w-[1200px] mx-auto px-4 md:px-6 py-16 md:py-24 grid md:grid-cols-2 gap-10 items-center">
         <div className="text-charcoal-foreground">
           <h1 className="font-extrabold tracking-tight text-4xl md:text-5xl lg:text-6xl leading-[1.05]">
-            The marketing machine for your trades business.
+            {t("hero.title")}
           </h1>
           <p className="mt-5 text-base md:text-lg text-charcoal-foreground/80 max-w-md leading-relaxed">
-            Stop relying on referrals. I build high-converting ads and landing pages that get your phone ringing with exclusive local leads.
+            {t("hero.subtitle")}
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
             <button
               onClick={() => scrollToId("cta")}
               className="bg-primary text-primary-foreground font-semibold px-5 py-3 rounded-sm border-2 border-primary hover:bg-primary/90 transition"
             >
-              Get My Free Audit
+              {t("hero.ctaPrimary")}
             </button>
             <button
               onClick={() => scrollToId("work")}
               className="bg-transparent text-charcoal-foreground font-semibold px-5 py-3 rounded-sm border-2 border-charcoal-foreground hover:bg-charcoal-foreground hover:text-charcoal transition"
             >
-              See My Results
+              {t("hero.ctaSecondary")}
             </button>
           </div>
         </div>
@@ -103,16 +133,19 @@ function Hero({ onPlay }: { onPlay: () => void }) {
 }
 
 function SoundFamiliar() {
+  const { t } = useTranslation();
   const items = [
-    { Icon: MessageSquareWarning, text: "Most of your jobs come from word of mouth" },
-    { Icon: TrendingDown, text: "Zero real calls from boosted posts" },
-    { Icon: EyeOff, text: "Competitors show up on Google, you don't" },
-    { Icon: Wrench, text: "Too busy working to figure out marketing" },
+    { Icon: MessageSquareWarning, text: t("sound.i1") },
+    { Icon: TrendingDown, text: t("sound.i2") },
+    { Icon: EyeOff, text: t("sound.i3") },
+    { Icon: Wrench, text: t("sound.i4") },
   ];
   return (
     <section id="work" className="bg-charcoal text-charcoal-foreground py-16 md:py-24">
       <div className="max-w-[1200px] mx-auto px-4 md:px-6">
-        <h2 className="text-center font-extrabold text-2xl md:text-3xl mb-10">Sound Familiar?</h2>
+        <h2 className="text-center font-extrabold text-2xl md:text-3xl mb-10">
+          {t("sound.title")}
+        </h2>
         <div className="grid sm:grid-cols-2 gap-4 md:gap-5 max-w-3xl mx-auto">
           {items.map(({ Icon, text }) => (
             <div
@@ -130,30 +163,19 @@ function SoundFamiliar() {
 }
 
 function Services() {
+  const { t } = useTranslation();
   const items = [
-    {
-      Icon: Search,
-      title: "Show Up on Google & Facebook",
-      body: "I put your business exactly where local homeowners are looking for your services.",
-    },
-    {
-      Icon: LayoutTemplate,
-      title: "A Page That Actually Gets You Calls",
-      body: "No more confusing websites. I build simple, high-converting landing pages focused on one thing: getting the phone to ring.",
-    },
-    {
-      Icon: Smartphone,
-      title: "Leads Go Straight To Your Phone",
-      body: "Real-time notifications when a potential customer wants a quote. No logging into complicated dashboards.",
-    },
+    { Icon: Search, title: t("services.s1Title"), body: t("services.s1Body") },
+    { Icon: LayoutTemplate, title: t("services.s2Title"), body: t("services.s2Body") },
+    { Icon: Smartphone, title: t("services.s3Title"), body: t("services.s3Body") },
   ];
   return (
     <section id="services" className="bg-surface py-16 md:py-24">
       <div className="max-w-[1200px] mx-auto px-4 md:px-6">
         <h2 className="text-center font-extrabold text-2xl md:text-3xl text-charcoal mb-12">
-          I handle the marketing.
+          {t("services.title1")}
           <br />
-          You handle the work.
+          {t("services.title2")}
         </h2>
         <div className="grid md:grid-cols-3 gap-6">
           {items.map(({ Icon, title, body }) => (
@@ -172,33 +194,147 @@ function Services() {
   );
 }
 
+function GBPMockup({ variant }: { variant: "before" | "after" }) {
+  const { t } = useTranslation();
+  const isAfter = variant === "after";
+  const tagLabel = isAfter ? t("compare.afterTag") : t("compare.beforeTag");
+  const titleLabel = isAfter ? t("compare.afterTitle") : t("compare.beforeTitle");
+  const bizName = isAfter ? t("compare.afterBiz") : t("compare.beforeBiz");
+  const cat = isAfter ? t("compare.afterCat") : t("compare.beforeCat");
+
+  return (
+    <div className="relative">
+      <div
+        className={`absolute -top-3 left-4 z-10 px-3 py-1 rounded-sm border-2 border-charcoal text-xs font-extrabold tracking-wider ${
+          isAfter ? "bg-primary text-primary-foreground" : "bg-surface-container text-charcoal"
+        }`}
+      >
+        {tagLabel} — {titleLabel}
+      </div>
+
+      <div className="bg-white border-2 border-charcoal rounded-sm shadow-[6px_6px_0_0_var(--charcoal)] overflow-hidden">
+        {/* photo strip */}
+        <div className={`h-32 ${isAfter ? "bg-gradient-to-br from-primary/30 to-accent-rust/40" : "bg-zinc-200"} relative flex items-center justify-center border-b-2 border-charcoal`}>
+          {isAfter ? (
+            <div className="grid grid-cols-4 gap-1 w-full h-full p-1">
+              {Array.from({ length: 4 }).map((_, i) => (
+                <div key={i} className="bg-zinc-700/80 rounded-sm" />
+              ))}
+            </div>
+          ) : (
+            <Camera size={32} className="text-zinc-400" strokeWidth={1.5} />
+          )}
+        </div>
+
+        <div className="p-4 space-y-3">
+          <div>
+            <h4 className="font-extrabold text-charcoal text-base">{bizName}</h4>
+            <p className="text-xs text-muted-foreground">{cat}</p>
+          </div>
+
+          {/* reviews row */}
+          <div className="flex items-center gap-2">
+            {isAfter ? (
+              <>
+                <div className="flex gap-0.5 text-primary">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star key={i} size={12} fill="currentColor" />
+                  ))}
+                </div>
+                <span className="text-xs font-bold text-charcoal">4.9 · {t("compare.reviews")}</span>
+              </>
+            ) : (
+              <>
+                <div className="flex gap-0.5 text-zinc-300">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star key={i} size={12} />
+                  ))}
+                </div>
+                <span className="text-xs text-muted-foreground">{t("compare.noReviews")}</span>
+              </>
+            )}
+          </div>
+
+          {/* details */}
+          <ul className="space-y-1.5 text-xs">
+            <li className="flex items-center gap-2">
+              <Camera size={12} className={isAfter ? "text-primary" : "text-zinc-400"} />
+              <span className={isAfter ? "text-charcoal font-semibold" : "text-muted-foreground"}>
+                {isAfter ? t("compare.photos") : t("compare.noPhoto")}
+              </span>
+            </li>
+            <li className="flex items-center gap-2">
+              <Link2 size={12} className={isAfter ? "text-primary" : "text-zinc-400"} />
+              <span className={isAfter ? "text-charcoal font-semibold" : "text-muted-foreground"}>
+                {isAfter ? t("compare.website") : t("compare.noWebsite")}
+              </span>
+            </li>
+            <li className="flex items-center gap-2">
+              <Phone size={12} className={isAfter ? "text-primary" : "text-zinc-400"} />
+              <span className={isAfter ? "text-charcoal font-semibold" : "text-muted-foreground"}>
+                {isAfter ? t("compare.calls") : t("compare.noCalls")}
+              </span>
+            </li>
+            <li className="flex items-center gap-2">
+              <MapPin size={12} className="text-zinc-400" />
+              <span className="text-muted-foreground">Framingham, MA</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      {isAfter && (
+        <div className="absolute -bottom-3 -right-3 bg-primary text-primary-foreground border-2 border-charcoal rounded-sm px-3 py-1.5 text-xs font-extrabold flex items-center gap-1.5 shadow-[3px_3px_0_0_var(--charcoal)] animate-pulse">
+          <BellRing size={14} />
+          {t("compare.leadBadge")}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function Compare() {
+  const { t } = useTranslation();
+  return (
+    <section id="compare" className="bg-surface-container py-16 md:py-24 border-y-2 border-charcoal/10">
+      <div className="max-w-[1200px] mx-auto px-4 md:px-6">
+        <h2 className="text-center font-extrabold text-2xl md:text-3xl text-charcoal mb-3">
+          {t("compare.title")}
+        </h2>
+        <p className="text-center text-muted-foreground mb-12 max-w-xl mx-auto">
+          {t("compare.subtitle")}
+        </p>
+        <div className="grid md:grid-cols-2 gap-10 md:gap-14 max-w-4xl mx-auto pt-4">
+          <GBPMockup variant="before" />
+          <GBPMockup variant="after" />
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function About() {
-  const bullets = [
-    "Based in Framingham, MA",
-    "You'll have my direct contact",
-    "I only take a few clients per area",
-  ];
+  const { t, locale } = useTranslation();
+  const bullets = [t("about.b1"), t("about.b2"), t("about.b3")];
   return (
     <section id="about" className="bg-surface py-16 md:py-24 border-t-2 border-charcoal/10">
       <div className="max-w-[1200px] mx-auto px-4 md:px-6">
         <h2 className="text-center font-extrabold text-2xl md:text-3xl text-charcoal mb-12">
-          Who's Behind This
+          {t("about.title")}
         </h2>
         <div className="grid md:grid-cols-2 gap-10 md:gap-14 items-center max-w-5xl mx-auto">
           <div className="flex justify-center md:justify-start">
             <div className="relative w-full max-w-[320px] aspect-[3/4] bg-surface-container border-2 border-charcoal rounded-sm shadow-[6px_6px_0_0_var(--charcoal)] flex items-center justify-center">
               <span className="text-charcoal/60 font-semibold text-sm tracking-wide text-center px-4">
-                Renan's photo here
+                {t("about.photoPlaceholder")}
               </span>
             </div>
           </div>
           <div>
             <h3 className="font-extrabold text-3xl md:text-4xl text-charcoal mb-4">
-              Hi, I'm Renan.
+              {t("about.heading")}
             </h3>
-            <p className="text-charcoal/80 leading-relaxed mb-6">
-              I'm a marketing specialist based in Framingham, MA. I work directly with local service businesses — no big agency, no account managers, no outsourcing. When you work with me, you work with me.
-            </p>
+            <p className="text-charcoal/80 leading-relaxed mb-6">{t("about.body")}</p>
             <ul className="space-y-3 mb-7">
               {bullets.map((b) => (
                 <li key={b} className="flex items-start gap-3">
@@ -207,12 +343,25 @@ function About() {
                 </li>
               ))}
             </ul>
-            <button
-              onClick={() => scrollToId("cta")}
-              className="bg-primary text-primary-foreground font-semibold px-6 py-3 rounded-sm border-2 border-charcoal shadow-[4px_4px_0_0_var(--charcoal)] hover:translate-y-[-1px] transition-transform"
-            >
-              Let's Talk
-            </button>
+            <div className="flex flex-wrap gap-3">
+              <button
+                onClick={() => scrollToId("cta")}
+                className="bg-primary text-primary-foreground font-semibold px-6 py-3 rounded-sm border-2 border-charcoal shadow-[4px_4px_0_0_var(--charcoal)] hover:translate-y-[-1px] transition-transform"
+              >
+                {t("about.cta")}
+              </button>
+              {/* Conditional: WhatsApp CTA only for PT speakers */}
+              {locale === "pt" && (
+                <a
+                  href="https://wa.me/15555555555"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-[#25D366] text-white font-semibold px-6 py-3 rounded-sm border-2 border-charcoal shadow-[4px_4px_0_0_var(--charcoal)] hover:translate-y-[-1px] transition-transform"
+                >
+                  WhatsApp
+                </a>
+              )}
+            </div>
           </div>
         </div>
       </div>
@@ -221,16 +370,17 @@ function About() {
 }
 
 function Steps() {
+  const { t } = useTranslation();
   const steps = [
-    { Icon: PhoneCall, n: 1, title: "Quick Call", body: "I learn about your business and area." },
-    { Icon: Rocket, n: 2, title: "I Build & Launch", body: "Ads + page live in 7 days." },
-    { Icon: PhoneIncoming, n: 3, title: "Your Phone Rings", body: "Real leads, real jobs, real money." },
+    { Icon: PhoneCall, n: 1, title: t("steps.s1Title"), body: t("steps.s1Body") },
+    { Icon: Rocket, n: 2, title: t("steps.s2Title"), body: t("steps.s2Body") },
+    { Icon: PhoneIncoming, n: 3, title: t("steps.s3Title"), body: t("steps.s3Body") },
   ];
   return (
     <section id="pricing" className="bg-surface-container py-16 md:py-24 border-y-2 border-charcoal/10">
       <div className="max-w-[1200px] mx-auto px-4 md:px-6">
         <h2 className="text-center font-extrabold text-2xl md:text-3xl text-charcoal mb-12">
-          Simple as a job quote.
+          {t("steps.title")}
         </h2>
         <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
           {steps.map(({ Icon, n, title, body }) => (
@@ -254,37 +404,17 @@ function Steps() {
 }
 
 function Reviews() {
+  const { t } = useTranslation();
   const reviews = [
-    {
-      initials: "CM",
-      bg: "bg-primary",
-      name: "Carlos M.",
-      trade: "PAINTING CONTRACTOR",
-      city: "FRAMINGHAM",
-      quote: "Before I was just waiting for referrals. Now I get calls every week from people I've never met.",
-    },
-    {
-      initials: "AR",
-      bg: "bg-accent-rust",
-      name: "Ana R.",
-      trade: "HOUSE CLEANING",
-      city: "MARLBOROUGH",
-      quote: "I was scared to spend money on ads. First month I got 6 new clients.",
-    },
-    {
-      initials: "MT",
-      bg: "bg-accent-graphite",
-      name: "Mike T.",
-      trade: "LANDSCAPING",
-      city: "NATICK",
-      quote: "Simple and it works. My schedule is full now.",
-    },
+    { initials: "CM", bg: "bg-primary", name: "Carlos M.", trade: t("reviews.t1"), city: "FRAMINGHAM", quote: t("reviews.r1") },
+    { initials: "AR", bg: "bg-accent-rust", name: "Ana R.", trade: t("reviews.t2"), city: "MARLBOROUGH", quote: t("reviews.r2") },
+    { initials: "MT", bg: "bg-accent-graphite", name: "Mike T.", trade: t("reviews.t3"), city: "NATICK", quote: t("reviews.r3") },
   ];
   return (
     <section id="reviews" className="bg-surface py-16 md:py-24">
       <div className="max-w-[1200px] mx-auto px-4 md:px-6">
         <h2 className="text-center font-extrabold text-2xl md:text-3xl text-charcoal mb-12">
-          What Local Pros are Saying
+          {t("reviews.title")}
         </h2>
         <div className="grid md:grid-cols-3 gap-6">
           {reviews.map((r) => (
@@ -318,20 +448,21 @@ function Reviews() {
 }
 
 function FinalCTA() {
+  const { t } = useTranslation();
   return (
     <section id="cta" className="bg-primary py-16 md:py-20 text-center">
       <div className="max-w-[1200px] mx-auto px-4 md:px-6">
         <h2 className="font-extrabold text-3xl md:text-4xl text-white mb-7">
-          Ready to stop waiting for referrals?
+          {t("cta.title")}
         </h2>
         <a
           href="mailto:hello@rwleads.example"
           className="inline-flex items-center justify-center bg-charcoal text-charcoal-foreground font-semibold px-8 py-4 rounded-sm border-2 border-charcoal hover:bg-charcoal/90 transition"
         >
-          Book Your Free 15-Min Call
+          {t("cta.button")}
         </a>
         <p className="mt-4 text-xs font-semibold tracking-wide text-white/90">
-          Only 3 spots available in Framingham this month
+          {t("cta.note")}
         </p>
       </div>
     </section>
@@ -339,19 +470,19 @@ function FinalCTA() {
 }
 
 function Footer() {
+  const { t } = useTranslation();
   return (
     <footer className="bg-charcoal text-charcoal-foreground py-6">
       <div className="max-w-[1200px] mx-auto px-4 md:px-6 flex items-center justify-between gap-4">
-        <p className="text-xs text-charcoal-foreground/70">
-          © 2024 RW Leads Generator. All rights reserved.
-        </p>
-        <a href="#" className="text-xs hover:text-primary">Privacy Policy</a>
+        <p className="text-xs text-charcoal-foreground/70">{t("footer.rights")}</p>
+        <a href="#" className="text-xs hover:text-primary">{t("footer.privacy")}</a>
       </div>
     </footer>
   );
 }
 
 function VideoModal({ open, onClose }: { open: boolean; onClose: () => void }) {
+  const { t } = useTranslation();
   if (!open) return null;
   return (
     <div
@@ -370,7 +501,7 @@ function VideoModal({ open, onClose }: { open: boolean; onClose: () => void }) {
           <X size={18} />
         </button>
         <div className="w-full h-full flex items-center justify-center text-charcoal-foreground/60">
-          Video coming soon
+          {t("video.soon")}
         </div>
       </div>
     </div>
@@ -386,6 +517,7 @@ function Landing() {
         <Hero onPlay={() => setVideoOpen(true)} />
         <SoundFamiliar />
         <Services />
+        <Compare />
         <About />
         <Steps />
         <Reviews />
