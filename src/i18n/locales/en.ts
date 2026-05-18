@@ -1,0 +1,92 @@
+export const en = {
+  nav: { bookCall: "Book Call" },
+  hero: {
+    title: "The marketing machine for your trades business.",
+    subtitle:
+      "Stop relying on referrals. I build high-converting ads and landing pages that get your phone ringing with exclusive local leads.",
+    ctaPrimary: "Get My Free Audit",
+    ctaSecondary: "See My Results",
+    imgAlt: "Residential outdoor garden patio at sunset",
+  },
+  sound: {
+    title: "Sound Familiar?",
+    i1: "Most of your jobs come from word of mouth",
+    i2: "Zero real calls from boosted posts",
+    i3: "Competitors show up on Google, you don't",
+    i4: "Too busy working to figure out marketing",
+  },
+  services: {
+    title1: "I handle the marketing.",
+    title2: "You handle the work.",
+    s1Title: "Show Up on Google & Facebook",
+    s1Body:
+      "I put your business exactly where local homeowners are looking for your services.",
+    s2Title: "A Page That Actually Gets You Calls",
+    s2Body:
+      "No more confusing websites. I build simple, high-converting landing pages focused on one thing: getting the phone to ring.",
+    s3Title: "Leads Go Straight To Your Phone",
+    s3Body:
+      "Real-time notifications when a potential customer wants a quote. No logging into complicated dashboards.",
+  },
+  compare: {
+    title: "Before vs After",
+    subtitle: "What an optimized Google Business Profile actually looks like.",
+    beforeTag: "BEFORE",
+    afterTag: "AFTER",
+    beforeTitle: "Invisible online",
+    afterTitle: "Local lead magnet",
+    beforeBiz: "Your Business",
+    afterBiz: "Your Business",
+    beforeCat: "Service • No category",
+    afterCat: "Top-rated local pro",
+    noReviews: "No reviews yet",
+    reviews: "127 reviews",
+    noPhoto: "No photos",
+    photos: "48 photos",
+    noWebsite: "No website",
+    website: "Website linked",
+    noCalls: "0 calls this month",
+    calls: "32 calls this month",
+    leadBadge: "New lead!",
+  },
+  about: {
+    title: "Who's Behind This",
+    heading: "Hi, I'm Renan.",
+    body:
+      "I'm a marketing specialist based in Framingham, MA. I work directly with local service businesses — no big agency, no account managers, no outsourcing. When you work with me, you work with me.",
+    b1: "Based in Framingham, MA",
+    b2: "You'll have my direct contact",
+    b3: "I only take a few clients per area",
+    cta: "Let's Talk",
+    photoPlaceholder: "Renan's photo here",
+  },
+  steps: {
+    title: "Simple as a job quote.",
+    s1Title: "Quick Call",
+    s1Body: "I learn about your business and area.",
+    s2Title: "I Build & Launch",
+    s2Body: "Ads + page live in 7 days.",
+    s3Title: "Your Phone Rings",
+    s3Body: "Real leads, real jobs, real money.",
+  },
+  reviews: {
+    title: "What Local Pros are Saying",
+    r1: "Before I was just waiting for referrals. Now I get calls every week from people I've never met.",
+    r2: "I was scared to spend money on ads. First month I got 6 new clients.",
+    r3: "Simple and it works. My schedule is full now.",
+    t1: "PAINTING CONTRACTOR",
+    t2: "HOUSE CLEANING",
+    t3: "LANDSCAPING",
+  },
+  cta: {
+    title: "Ready to stop waiting for referrals?",
+    button: "Book Your Free 15-Min Call",
+    note: "Only 3 spots available in Framingham this month",
+  },
+  footer: {
+    rights: "© 2024 RW Leads Generator. All rights reserved.",
+    privacy: "Privacy Policy",
+  },
+  video: { soon: "Video coming soon" },
+};
+export type Dict = typeof en;

@@ -9,6 +9,7 @@ import {
 } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
+import { I18nProvider } from "@/i18n/context";
 
 function NotFoundComponent() {
   return (
@@ -90,6 +91,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800&display=swap" },
       { rel: "stylesheet", href: appCss },
+      { rel: "alternate", hrefLang: "en", href: "https://rw-leads-showcase.lovable.app/" },
+      { rel: "alternate", hrefLang: "pt", href: "https://rw-leads-showcase.lovable.app/" },
+      { rel: "alternate", hrefLang: "es", href: "https://rw-leads-showcase.lovable.app/" },
+      { rel: "alternate", hrefLang: "x-default", href: "https://rw-leads-showcase.lovable.app/" },
     ],
   }),
   shellComponent: RootShell,
@@ -117,7 +122,9 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Outlet />
+      <I18nProvider>
+        <Outlet />
+      </I18nProvider>
     </QueryClientProvider>
   );
 }
