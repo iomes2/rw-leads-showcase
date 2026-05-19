@@ -597,6 +597,7 @@ function Landing() {
         <Services />
         <Compare />
         <About />
+        <Results />
         <Steps />
         <Reviews />
         <FinalCTA />
