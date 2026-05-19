@@ -21,6 +21,8 @@ import {
   Link2,
   Phone,
   BellRing,
+  BarChart3,
+  MousePointerClick,
 } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 import { useTranslation, type Locale } from "@/i18n/context";
@@ -447,8 +449,70 @@ function Reviews() {
   );
 }
 
-function FinalCTA() {
+function Results() {
   const { t } = useTranslation();
+  return (
+    <section id="results" className="bg-charcoal py-16 md:py-24">
+      <div className="max-w-[1200px] mx-auto px-4 md:px-6">
+        <h2 className="text-center font-extrabold text-3xl md:text-4xl text-white mb-3">
+          {t("results.title")}
+        </h2>
+        <p className="text-center text-zinc-400 mb-12 max-w-2xl mx-auto">
+          {t("results.subtitle")}
+        </p>
+        <div className="grid md:grid-cols-3 gap-6 items-stretch">
+          {/* Card 1 */}
+          <div className="bg-[#2A2A2A] border border-[#3A3A3A] rounded-2xl p-6 md:p-8 flex flex-col">
+            <BarChart3 className="text-primary mb-5" size={32} strokeWidth={2.5} />
+            <div className="text-4xl md:text-5xl font-extrabold text-primary mb-2">
+              {t("results.c1Number")}
+            </div>
+            <div className="text-white font-semibold mb-3">{t("results.c1Label")}</div>
+            <p className="text-sm text-zinc-400 leading-relaxed">{t("results.c1Body")}</p>
+          </div>
+          {/* Card 2 */}
+          <div className="bg-[#2A2A2A] border border-[#3A3A3A] rounded-2xl p-6 md:p-8 flex flex-col">
+            <MousePointerClick className="text-primary mb-5" size={32} strokeWidth={2.5} />
+            <div className="text-4xl md:text-5xl font-extrabold text-primary mb-2">
+              {t("results.c2Number")}
+            </div>
+            <div className="text-white font-semibold mb-3">{t("results.c2Label")}</div>
+            <p className="text-sm text-zinc-400 leading-relaxed">{t("results.c2Body")}</p>
+          </div>
+          {/* Card 3 */}
+          <div className="bg-[#2A2A2A] border border-[#3A3A3A] rounded-2xl p-6 md:p-8 flex flex-col">
+            <div className="relative w-full aspect-video bg-[#1C1C1C] border border-[#3A3A3A] rounded-xl mb-5 overflow-hidden">
+              <iframe
+                src="https://lp-evolution.netlify.app"
+                title={t("results.c3ImgLabel")}
+                className="absolute inset-0 w-full h-full pointer-events-none"
+                loading="lazy"
+              />
+            </div>
+            <div className="text-white font-bold text-lg mb-2">{t("results.c3Title")}</div>
+            <p className="text-sm text-zinc-400 leading-relaxed mb-3 flex-1">
+              {t("results.c3Body")}
+            </p>
+            <a
+              href="https://lp-evolution.netlify.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary text-sm font-semibold hover:underline"
+            >
+              {t("results.c3Link")}
+            </a>
+          </div>
+        </div>
+        <p className="text-center text-xs italic text-zinc-500 mt-8">
+          {t("results.disclaimer")}
+        </p>
+      </div>
+    </section>
+  );
+}
+
+function FinalCTA() {
+  const { t, locale } = useTranslation();
   return (
     <section id="cta" className="bg-primary py-16 md:py-20 text-center">
       <div className="max-w-[1200px] mx-auto px-4 md:px-6">
@@ -456,7 +520,9 @@ function FinalCTA() {
           {t("cta.title")}
         </h2>
         <a
-          href="mailto:hello@rwleads.example"
+          href="https://calendly.com/renan/15min"
+          target="_blank"
+          rel="noopener noreferrer"
           className="inline-flex items-center justify-center bg-charcoal text-charcoal-foreground font-semibold px-8 py-4 rounded-sm border-2 border-charcoal hover:bg-charcoal/90 transition"
         >
           {t("cta.button")}
@@ -464,6 +530,18 @@ function FinalCTA() {
         <p className="mt-4 text-xs font-semibold tracking-wide text-white/90">
           {t("cta.note")}
         </p>
+        {locale === "pt" && (
+          <div className="mt-5">
+            <a
+              href="https://wa.me/15555555555"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-white/95 underline underline-offset-4 hover:text-white"
+            >
+              {t("cta.whatsapp")}
+            </a>
+          </div>
+        )}
       </div>
     </section>
   );
@@ -519,6 +597,7 @@ function Landing() {
         <Services />
         <Compare />
         <About />
+        <Results />
         <Steps />
         <Reviews />
         <FinalCTA />

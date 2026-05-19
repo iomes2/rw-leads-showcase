@@ -83,7 +83,23 @@ export const pt: Dict = {
   cta: {
     title: "Pronto para parar de esperar indicações?",
     button: "Agende Sua Call Grátis de 15 Min",
+    whatsapp: "Prefere pelo WhatsApp? Clica aqui",
     note: "Apenas 3 vagas em Framingham este mês",
+  },
+  results: {
+    title: "Trabalho Real. Resultados Reais.",
+    subtitle: "Trabalhos entregues antes da LocalPro Digital — prova de que sei gerar resultados.",
+    c1Number: "438K+",
+    c1Label: "Pessoas Alcançadas",
+    c1Body: "Em 27 campanhas de anúncios gerenciadas para um instituto cultural no Brasil. Múltiplos públicos, criativos e objetivos testados.",
+    c2Number: "$0,28",
+    c2Label: "Custo por Clique",
+    c2Body: "Alcançado em uma campanha de awareness de alto volume rodando no Facebook e Instagram.",
+    c3ImgLabel: "Screenshot da landing page Evolution Fitness",
+    c3Title: "Evolution Fitness",
+    c3Body: "Landing page de alta conversão criada para uma marca de equipamentos fitness no Brasil.",
+    c3Link: "Ver Projeto →",
+    disclaimer: "Resultados alcançados em projetos anteriores à LocalPro Digital.",
   },
   footer: {
     rights: "© 2024 RW Leads Generator. Todos os direitos reservados.",
