@@ -21,6 +21,8 @@ import {
   Link2,
   Phone,
   BellRing,
+  BarChart3,
+  MousePointerClick,
 } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 import { useTranslation, type Locale } from "@/i18n/context";
