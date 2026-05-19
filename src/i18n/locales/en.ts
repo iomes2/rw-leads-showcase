@@ -81,7 +81,23 @@ export const en = {
   cta: {
     title: "Ready to stop waiting for referrals?",
     button: "Book Your Free 15-Min Call",
+    whatsapp: "Prefer WhatsApp? Click here",
     note: "Only 3 spots available in Framingham this month",
+  },
+  results: {
+    title: "Real Work. Real Results.",
+    subtitle: "Work delivered before LocalPro Digital — proof that I know how to generate results.",
+    c1Number: "438K+",
+    c1Label: "People Reached",
+    c1Body: "Across 27 ad campaigns managed for a cultural institute in Brazil. Multiple audiences, creatives and objectives tested.",
+    c2Number: "$0.28",
+    c2Label: "Cost Per Click",
+    c2Body: "Achieved in a high-volume awareness campaign running across Facebook and Instagram.",
+    c3ImgLabel: "Evolution Fitness landing page screenshot",
+    c3Title: "Evolution Fitness",
+    c3Body: "High-converting landing page built for a fitness equipment brand in Brazil.",
+    c3Link: "View Project →",
+    disclaimer: "Results achieved in previous projects prior to LocalPro Digital.",
   },
   footer: {
     rights: "© 2024 RW Leads Generator. All rights reserved.",
