@@ -11,9 +11,6 @@ import {
   LayoutTemplate,
   Smartphone,
   Star,
-  PhoneCall,
-  Rocket,
-  PhoneIncoming,
   Check,
   Globe,
   MapPin,
@@ -30,6 +27,9 @@ import { useTranslation, type Locale } from "@/i18n/context";
 export const Route = createFileRoute("/")({
   component: Landing,
 });
+
+const CALENDLY_URL = "https://calendly.com/renan/15min";
+const WHATSAPP_URL = "https://wa.me/15555555555";
 
 const scrollToId = (id: string) => {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -64,12 +64,14 @@ function Nav() {
         </a>
         <div className="flex items-center gap-3">
           <LanguageSwitcher />
-          <button
-            onClick={() => scrollToId("cta")}
+          <a
+            href={CALENDLY_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center justify-center bg-primary text-primary-foreground font-semibold px-5 py-2.5 rounded-sm border-2 border-charcoal hover:translate-y-[-1px] transition-transform"
           >
             {t("nav.bookCall")}
-          </button>
+          </a>
         </div>
       </div>
     </header>
@@ -90,7 +92,7 @@ function Hero({ onPlay }: { onPlay: () => void }) {
       <div className="absolute inset-0 bg-charcoal/65" />
       <div className="relative max-w-[1200px] mx-auto px-4 md:px-6 py-16 md:py-24 grid md:grid-cols-2 gap-10 items-center">
         <div className="text-charcoal-foreground">
-          <h1 className="font-extrabold tracking-tight text-4xl md:text-5xl lg:text-6xl leading-[1.05]">
+          <h1 className="font-extrabold tracking-tight text-4xl md:text-5xl lg:text-6xl leading-[1.05] whitespace-pre-line">
             {t("hero.title")}
           </h1>
           <p className="mt-5 text-base md:text-lg text-charcoal-foreground/80 max-w-md leading-relaxed">
@@ -104,12 +106,15 @@ function Hero({ onPlay }: { onPlay: () => void }) {
               {t("hero.ctaPrimary")}
             </button>
             <button
-              onClick={() => scrollToId("work")}
+              onClick={() => scrollToId("results")}
               className="bg-transparent text-charcoal-foreground font-semibold px-5 py-3 rounded-sm border-2 border-charcoal-foreground hover:bg-charcoal-foreground hover:text-charcoal transition"
             >
               {t("hero.ctaSecondary")}
             </button>
           </div>
+          <p className="mt-5 text-sm text-charcoal-foreground/85 font-medium">
+            {t("hero.reassurance")}
+          </p>
         </div>
         <div className="flex justify-center md:justify-end">
           <div className="relative w-[240px] md:w-[280px] aspect-[9/19] bg-charcoal rounded-[2.5rem] border-[6px] border-charcoal shadow-[8px_8px_0_0_rgba(0,0,0,0.3)] p-2">
@@ -143,7 +148,7 @@ function SoundFamiliar() {
     { Icon: Wrench, text: t("sound.i4") },
   ];
   return (
-    <section id="work" className="bg-charcoal text-charcoal-foreground py-16 md:py-24">
+    <section className="bg-charcoal text-charcoal-foreground py-16 md:py-24">
       <div className="max-w-[1200px] mx-auto px-4 md:px-6">
         <h2 className="text-center font-extrabold text-2xl md:text-3xl mb-10">
           {t("sound.title")}
@@ -159,6 +164,9 @@ function SoundFamiliar() {
             </div>
           ))}
         </div>
+        <p className="text-center mt-10 italic text-charcoal-foreground/70 text-sm md:text-base">
+          {t("sound.transition")}
+        </p>
       </div>
     </section>
   );
@@ -191,6 +199,15 @@ function Services() {
             </div>
           ))}
         </div>
+        <div className="mt-12 text-center">
+          <p className="text-charcoal font-semibold mb-4">{t("services.ctaPrompt")}</p>
+          <button
+            onClick={() => scrollToId("cta")}
+            className="bg-primary text-primary-foreground font-semibold px-6 py-3 rounded-sm border-2 border-charcoal shadow-[4px_4px_0_0_var(--charcoal)] hover:translate-y-[-1px] transition-transform"
+          >
+            {t("services.ctaButton")}
+          </button>
+        </div>
       </div>
     </section>
   );
@@ -215,7 +232,6 @@ function GBPMockup({ variant }: { variant: "before" | "after" }) {
       </div>
 
       <div className="bg-white border-2 border-charcoal rounded-sm shadow-[6px_6px_0_0_var(--charcoal)] overflow-hidden">
-        {/* photo strip */}
         <div className={`h-32 ${isAfter ? "bg-gradient-to-br from-primary/30 to-accent-rust/40" : "bg-zinc-200"} relative flex items-center justify-center border-b-2 border-charcoal`}>
           {isAfter ? (
             <div className="grid grid-cols-4 gap-1 w-full h-full p-1">
@@ -234,7 +250,6 @@ function GBPMockup({ variant }: { variant: "before" | "after" }) {
             <p className="text-xs text-muted-foreground">{cat}</p>
           </div>
 
-          {/* reviews row */}
           <div className="flex items-center gap-2">
             {isAfter ? (
               <>
@@ -257,7 +272,6 @@ function GBPMockup({ variant }: { variant: "before" | "after" }) {
             )}
           </div>
 
-          {/* details */}
           <ul className="space-y-1.5 text-xs">
             <li className="flex items-center gap-2">
               <Camera size={12} className={isAfter ? "text-primary" : "text-zinc-400"} />
@@ -272,10 +286,12 @@ function GBPMockup({ variant }: { variant: "before" | "after" }) {
               </span>
             </li>
             <li className="flex items-center gap-2">
-              <Phone size={12} className={isAfter ? "text-primary" : "text-zinc-400"} />
-              <span className={isAfter ? "text-charcoal font-semibold" : "text-muted-foreground"}>
-                {isAfter ? t("compare.calls") : t("compare.noCalls")}
-              </span>
+              <Phone size={14} className={isAfter ? "text-primary" : "text-zinc-400"} />
+              {isAfter ? (
+                <span className="text-primary font-extrabold text-base">{t("compare.calls")}</span>
+              ) : (
+                <span className="text-muted-foreground">{t("compare.noCalls")}</span>
+              )}
             </li>
             <li className="flex items-center gap-2">
               <MapPin size={12} className="text-zinc-400" />
@@ -300,7 +316,7 @@ function Compare() {
   return (
     <section id="compare" className="bg-surface-container py-16 md:py-24 border-y-2 border-charcoal/10">
       <div className="max-w-[1200px] mx-auto px-4 md:px-6">
-        <h2 className="text-center font-extrabold text-2xl md:text-3xl text-charcoal mb-3">
+        <h2 className="text-center font-extrabold text-2xl md:text-3xl text-charcoal mb-3 max-w-3xl mx-auto">
           {t("compare.title")}
         </h2>
         <p className="text-center text-muted-foreground mb-12 max-w-xl mx-auto">
@@ -310,18 +326,21 @@ function Compare() {
           <GBPMockup variant="before" />
           <GBPMockup variant="after" />
         </div>
+        <p className="text-center mt-14 text-charcoal/85 italic max-w-2xl mx-auto">
+          {t("compare.transition")}
+        </p>
       </div>
     </section>
   );
 }
 
 function About() {
-  const { t, locale } = useTranslation();
+  const { t } = useTranslation();
   const bullets = [t("about.b1"), t("about.b2"), t("about.b3")];
   return (
     <section id="about" className="bg-surface py-16 md:py-24 border-t-2 border-charcoal/10">
       <div className="max-w-[1200px] mx-auto px-4 md:px-6">
-        <h2 className="text-center font-extrabold text-2xl md:text-3xl text-charcoal mb-12">
+        <h2 className="text-center font-extrabold text-2xl md:text-3xl text-charcoal mb-12 whitespace-pre-line">
           {t("about.title")}
         </h2>
         <div className="grid md:grid-cols-2 gap-10 md:gap-14 items-center max-w-5xl mx-auto">
@@ -333,10 +352,15 @@ function About() {
             </div>
           </div>
           <div>
-            <h3 className="font-extrabold text-3xl md:text-4xl text-charcoal mb-4">
+            <h3 className="font-extrabold text-2xl md:text-3xl text-charcoal mb-5 leading-tight">
               {t("about.heading")}
             </h3>
-            <p className="text-charcoal/80 leading-relaxed mb-6">{t("about.body")}</p>
+            <div className="space-y-4 text-charcoal/80 leading-relaxed mb-6">
+              <p>{t("about.body1")}</p>
+              <p>{t("about.body2")}</p>
+              <p className="font-semibold text-charcoal">{t("about.body3")}</p>
+            </div>
+            <p className="text-sm font-bold text-primary mb-4">{t("about.credibility")}</p>
             <ul className="space-y-3 mb-7">
               {bullets.map((b) => (
                 <li key={b} className="flex items-start gap-3">
@@ -346,24 +370,24 @@ function About() {
               ))}
             </ul>
             <div className="flex flex-wrap gap-3">
-              <button
-                onClick={() => scrollToId("cta")}
+              <a
+                href={CALENDLY_URL}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="bg-primary text-primary-foreground font-semibold px-6 py-3 rounded-sm border-2 border-charcoal shadow-[4px_4px_0_0_var(--charcoal)] hover:translate-y-[-1px] transition-transform"
               >
                 {t("about.cta")}
-              </button>
-              {/* Conditional: WhatsApp CTA only for PT speakers */}
-              {locale === "pt" && (
-                <a
-                  href="https://wa.me/15555555555"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-[#25D366] text-white font-semibold px-6 py-3 rounded-sm border-2 border-charcoal shadow-[4px_4px_0_0_var(--charcoal)] hover:translate-y-[-1px] transition-transform"
-                >
-                  WhatsApp
-                </a>
-              )}
+              </a>
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-transparent text-[#128C4A] font-semibold px-6 py-3 rounded-sm border-2 border-[#128C4A] hover:bg-[#128C4A] hover:text-white transition-colors"
+              >
+                {t("about.whatsapp")}
+              </a>
             </div>
+            <p className="mt-3 text-xs text-charcoal/60 italic">{t("about.micro")}</p>
           </div>
         </div>
       </div>
@@ -374,9 +398,9 @@ function About() {
 function Steps() {
   const { t } = useTranslation();
   const steps = [
-    { Icon: PhoneCall, n: 1, title: t("steps.s1Title"), body: t("steps.s1Body") },
-    { Icon: Rocket, n: 2, title: t("steps.s2Title"), body: t("steps.s2Body") },
-    { Icon: PhoneIncoming, n: 3, title: t("steps.s3Title"), body: t("steps.s3Body") },
+    { emoji: "💬", n: 1, title: t("steps.s1Title"), body: t("steps.s1Body") },
+    { emoji: "⚡", n: 2, title: t("steps.s2Title"), body: t("steps.s2Body") },
+    { emoji: "📲", n: 3, title: t("steps.s3Title"), body: t("steps.s3Body") },
   ];
   return (
     <section id="pricing" className="bg-surface-container py-16 md:py-24 border-y-2 border-charcoal/10">
@@ -385,11 +409,11 @@ function Steps() {
           {t("steps.title")}
         </h2>
         <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-          {steps.map(({ Icon, n, title, body }) => (
+          {steps.map(({ emoji, n, title, body }) => (
             <div key={n} className="text-center">
               <div className="relative inline-flex items-center justify-center mb-4">
-                <div className="w-14 h-14 bg-primary rounded-sm border-2 border-charcoal flex items-center justify-center text-white">
-                  <Icon size={24} strokeWidth={2.5} />
+                <div className="w-14 h-14 bg-primary rounded-sm border-2 border-charcoal flex items-center justify-center text-2xl">
+                  <span aria-hidden>{emoji}</span>
                 </div>
                 <span className="absolute -top-2 -right-2 w-6 h-6 bg-charcoal text-charcoal-foreground text-xs font-bold rounded-full flex items-center justify-center">
                   {n}
@@ -399,6 +423,20 @@ function Steps() {
               <p className="text-sm text-muted-foreground">{body}</p>
             </div>
           ))}
+        </div>
+        <p className="text-center mt-12 max-w-2xl mx-auto text-charcoal font-semibold italic">
+          {t("steps.guarantee")}
+        </p>
+        <div className="mt-8 text-center">
+          <a
+            href={CALENDLY_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center bg-primary text-primary-foreground font-semibold px-6 py-3 rounded-sm border-2 border-charcoal shadow-[4px_4px_0_0_var(--charcoal)] hover:translate-y-[-1px] transition-transform"
+          >
+            {t("steps.ctaButton")}
+          </a>
+          <p className="mt-3 text-xs text-charcoal/70">{t("steps.ctaNote")}</p>
         </div>
       </div>
     </section>
@@ -415,10 +453,13 @@ function Reviews() {
   return (
     <section id="reviews" className="bg-surface py-16 md:py-24">
       <div className="max-w-[1200px] mx-auto px-4 md:px-6">
-        <h2 className="text-center font-extrabold text-2xl md:text-3xl text-charcoal mb-12">
+        <h2 className="text-center font-extrabold text-2xl md:text-3xl text-charcoal mb-3">
           {t("reviews.title")}
         </h2>
-        <div className="grid md:grid-cols-3 gap-6">
+        <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
+          {t("reviews.credibility")}
+        </p>
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {reviews.map((r) => (
             <div
               key={r.initials}
@@ -443,6 +484,27 @@ function Reviews() {
               <p className="text-sm text-charcoal italic leading-relaxed">"{r.quote}"</p>
             </div>
           ))}
+          {/* Spots availability card */}
+          <div className="bg-primary/10 p-6 rounded-sm border-2 border-primary shadow-[4px_4px_0_0_var(--charcoal)] flex flex-col">
+            <h3 className="font-extrabold text-charcoal mb-4 text-base leading-snug">
+              {t("reviews.spotsTitle")}
+            </h3>
+            <ul className="space-y-2 mb-4 text-sm text-charcoal font-semibold">
+              <li className="flex items-start gap-2">
+                <span className="text-primary">🟠</span>
+                <span>{t("reviews.spot1")}</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-primary">🟠</span>
+                <span>{t("reviews.spot2")}</span>
+              </li>
+              <li className="flex items-start gap-2">
+                <span className="text-primary">🟠</span>
+                <span>{t("reviews.spot3")}</span>
+              </li>
+            </ul>
+            <p className="text-xs text-charcoal/75 italic mt-auto">{t("reviews.spotsNote")}</p>
+          </div>
         </div>
       </div>
     </section>
@@ -461,7 +523,6 @@ function Results() {
           {t("results.subtitle")}
         </p>
         <div className="grid md:grid-cols-3 gap-6 items-stretch">
-          {/* Card 1 */}
           <div className="bg-[#2A2A2A] border border-[#3A3A3A] rounded-2xl p-6 md:p-8 flex flex-col">
             <BarChart3 className="text-primary mb-5" size={32} strokeWidth={2.5} />
             <div className="text-4xl md:text-5xl font-extrabold text-primary mb-2">
@@ -470,7 +531,6 @@ function Results() {
             <div className="text-white font-semibold mb-3">{t("results.c1Label")}</div>
             <p className="text-sm text-zinc-400 leading-relaxed">{t("results.c1Body")}</p>
           </div>
-          {/* Card 2 */}
           <div className="bg-[#2A2A2A] border border-[#3A3A3A] rounded-2xl p-6 md:p-8 flex flex-col">
             <MousePointerClick className="text-primary mb-5" size={32} strokeWidth={2.5} />
             <div className="text-4xl md:text-5xl font-extrabold text-primary mb-2">
@@ -479,7 +539,6 @@ function Results() {
             <div className="text-white font-semibold mb-3">{t("results.c2Label")}</div>
             <p className="text-sm text-zinc-400 leading-relaxed">{t("results.c2Body")}</p>
           </div>
-          {/* Card 3 */}
           <div className="bg-[#2A2A2A] border border-[#3A3A3A] rounded-2xl p-6 md:p-8 flex flex-col">
             <div className="relative w-full aspect-video bg-[#1C1C1C] border border-[#3A3A3A] rounded-xl mb-5 overflow-hidden">
               <iframe
@@ -512,15 +571,19 @@ function Results() {
 }
 
 function FinalCTA() {
-  const { t, locale } = useTranslation();
+  const { t } = useTranslation();
+  const bullets = [t("cta.r1"), t("cta.r2"), t("cta.r3"), t("cta.r4")];
   return (
     <section id="cta" className="bg-primary py-16 md:py-20 text-center">
       <div className="max-w-[1200px] mx-auto px-4 md:px-6">
-        <h2 className="font-extrabold text-3xl md:text-4xl text-white mb-7">
+        <h2 className="font-extrabold text-2xl md:text-4xl text-white mb-5 whitespace-pre-line max-w-3xl mx-auto leading-tight">
           {t("cta.title")}
         </h2>
+        <p className="text-white/90 text-sm md:text-base font-semibold mb-6">
+          {t("cta.noRisk")}
+        </p>
         <a
-          href="https://calendly.com/renan/15min"
+          href={CALENDLY_URL}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center justify-center bg-charcoal text-charcoal-foreground font-semibold px-8 py-4 rounded-sm border-2 border-charcoal hover:bg-charcoal/90 transition"
@@ -528,20 +591,26 @@ function FinalCTA() {
           {t("cta.button")}
         </a>
         <p className="mt-4 text-xs font-semibold tracking-wide text-white/90">
-          {t("cta.note")}
+          {t("cta.urgency")}
         </p>
-        {locale === "pt" && (
-          <div className="mt-5">
-            <a
-              href="https://wa.me/15555555555"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm text-white/95 underline underline-offset-4 hover:text-white"
-            >
-              {t("cta.whatsapp")}
-            </a>
-          </div>
-        )}
+        <div className="mt-3">
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm text-white/95 underline underline-offset-4 hover:text-white"
+          >
+            {t("cta.whatsapp")}
+          </a>
+        </div>
+        <ul className="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-2 text-white text-sm font-semibold">
+          {bullets.map((b) => (
+            <li key={b} className="flex items-center gap-2">
+              <Check size={16} strokeWidth={3} />
+              {b}
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );
@@ -550,10 +619,33 @@ function FinalCTA() {
 function Footer() {
   const { t } = useTranslation();
   return (
-    <footer className="bg-charcoal text-charcoal-foreground py-6">
-      <div className="max-w-[1200px] mx-auto px-4 md:px-6 flex items-center justify-between gap-4">
-        <p className="text-xs text-charcoal-foreground/70">{t("footer.rights")}</p>
-        <a href="#" className="text-xs hover:text-primary">{t("footer.privacy")}</a>
+    <footer className="bg-charcoal text-charcoal-foreground py-10">
+      <div className="max-w-[1200px] mx-auto px-4 md:px-6 flex flex-col gap-6">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <p className="text-xs text-charcoal-foreground/70">{t("footer.rights")}</p>
+          <a href="#" className="text-xs hover:text-primary">{t("footer.privacy")}</a>
+        </div>
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 border-t border-charcoal-foreground/15 pt-6">
+          <p className="text-sm text-charcoal-foreground/85 italic">{t("footer.question")}</p>
+          <div className="flex flex-wrap gap-3">
+            <a
+              href={CALENDLY_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center bg-primary text-primary-foreground font-semibold px-4 py-2 rounded-sm text-xs hover:bg-primary/90 transition"
+            >
+              {t("footer.book")}
+            </a>
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center bg-[#25D366] text-white font-semibold px-4 py-2 rounded-sm text-xs hover:bg-[#1ebe5b] transition"
+            >
+              {t("footer.whatsapp")}
+            </a>
+          </div>
+        </div>
       </div>
     </footer>
   );
