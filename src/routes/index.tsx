@@ -58,17 +58,18 @@ function Nav() {
   const { t } = useTranslation();
   return (
     <header className="sticky top-0 z-40 bg-surface border-b-2 border-charcoal">
-      <div className="max-w-[1200px] mx-auto px-4 md:px-6 h-16 flex items-center justify-between">
-        <a href="#top" className="font-extrabold tracking-tight text-charcoal text-lg">
-          RW Leads Generator
+      <div className="max-w-[1200px] mx-auto px-3 sm:px-6 h-16 flex items-center justify-between gap-2">
+        <a href="#top" className="font-extrabold tracking-tight text-base sm:text-lg whitespace-nowrap">
+          <span className="text-primary">RWX</span>
+          <span className="text-charcoal font-normal ml-1">Media</span>
         </a>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3">
           <LanguageSwitcher />
           <a
             href={CALENDLY_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center bg-primary text-primary-foreground font-semibold px-5 py-2.5 rounded-sm border-2 border-charcoal hover:translate-y-[-1px] transition-transform"
+            className="inline-flex items-center justify-center bg-primary text-primary-foreground font-semibold text-xs sm:text-base px-3 sm:px-5 py-2 sm:py-2.5 rounded-sm border-2 border-charcoal hover:translate-y-[-1px] transition-transform whitespace-nowrap"
           >
             {t("nav.bookCall")}
           </a>
