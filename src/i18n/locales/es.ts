@@ -132,7 +132,7 @@ export const es: Dict = {
     disclaimer: "Resultados logrados en proyectos previos a LocalPro Digital.",
   },
   footer: {
-    rights: "© 2025 RW Leads Generator. Hecho para negocios de servicios locales en Framingham, MA.",
+    rights: "© 2025 RWX Media. Hecho para negocios de servicios locales en Framingham, MA.",
     question: "¿Todavía tienes preguntas? Mándame un mensaje — respondo el mismo día.",
     book: "Agendar Llamada",
     whatsapp: "WhatsApp",
