@@ -133,7 +133,7 @@ export const en = {
   },
   footer: {
     rights:
-      "© 2025 RW Leads Generator. Built for local service businesses in Framingham, MA.",
+      "© 2025 RWX Media. Built for local service businesses in Framingham, MA.",
     question: "Still have questions? Send me a message — I reply same day.",
     book: "Book a Call",
     whatsapp: "WhatsApp",
