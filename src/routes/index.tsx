@@ -37,19 +37,29 @@ const scrollToId = (id: string) => {
 
 function LanguageSwitcher() {
   const { locale, setLocale } = useTranslation();
+  const languages: Array<{ code: Locale; label: string }> = [
+    { code: "en", label: "EN" },
+    { code: "pt", label: "PT" },
+    { code: "es", label: "ES" },
+  ];
+
   return (
-    <div className="relative inline-flex items-center gap-1.5 bg-surface-container border-2 border-charcoal rounded-sm px-2 py-1">
-      <Globe size={14} className="text-charcoal" />
-      <select
-        aria-label="Language"
-        value={locale}
-        onChange={(e) => setLocale(e.target.value as Locale)}
-        className="bg-transparent text-xs font-bold text-charcoal focus:outline-none cursor-pointer pr-1"
-      >
-        <option value="en">EN</option>
-        <option value="pt">PT</option>
-        <option value="es">ES</option>
-      </select>
+    <div className="inline-flex items-center gap-1 bg-surface-container border-2 border-charcoal rounded-sm px-1 py-1" aria-label="Language">
+      <Globe size={13} className="text-charcoal hidden sm:block" />
+      {languages.map(({ code, label }) => (
+        <button
+          key={code}
+          type="button"
+          onClick={() => setLocale(code)}
+          className={`px-1.5 py-0.5 rounded-[2px] text-[10px] sm:text-xs font-bold transition-colors ${
+            locale === code
+              ? "bg-primary text-primary-foreground"
+              : "text-charcoal hover:bg-muted"
+          }`}
+        >
+          {label}
+        </button>
+      ))}
     </div>
   );
 }
@@ -69,7 +79,7 @@ function Nav() {
             href={CALENDLY_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center bg-primary text-primary-foreground font-semibold text-xs sm:text-base px-3 sm:px-5 py-2 sm:py-2.5 rounded-sm border-2 border-charcoal hover:translate-y-[-1px] transition-transform whitespace-nowrap"
+            className="inline-flex items-center justify-center bg-primary text-primary-foreground font-semibold text-[11px] sm:text-base px-2.5 sm:px-5 py-2 sm:py-2.5 rounded-sm border-2 border-charcoal hover:translate-y-[-1px] transition-transform whitespace-nowrap max-w-[118px] sm:max-w-none overflow-hidden text-ellipsis"
           >
             {t("nav.bookCall")}
           </a>
